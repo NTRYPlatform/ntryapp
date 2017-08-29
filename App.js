@@ -1,14 +1,49 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert  } from 'react-native';
+import Login from './src/components/Login/Login';
+
+import * as openpgp from 'react-native-openpgp';
+
 
 export default class App extends React.Component {
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+        'public': '',
+        'private': ''
+    };
+
+    this.onPressGenKeyPair = this.onPressGenKeyPair.bind(this);
+
+  }
+
+
+  onPressGenKeyPair(){
+
+    const options = {
+      userIds: [{name: 'Basit Raza', email:'basit.raza11@gmail.com'}],
+      numBits: 2048,
+      passphrase: 'testnet'
+    };
+
+    openpgp.generateKey(options)
+      .then((key) => {
+          this.setState({'public':key.publicKeyArmored});
+      })
+      .catch((err) => {
+        Alert.alert('Something went wrong');
+      })
+
+
+
+  }
+
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Login />
     );
   }
 }
