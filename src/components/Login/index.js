@@ -36,6 +36,11 @@ export default class Login extends Component {
               <TouchableOpacity style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
+
+              <TouchableOpacity style={styles.registerBtnContainer}>
+                <Text style={styles.registerButtonText}>Register</Text>
+              </TouchableOpacity>
+
         </View>
       </KeyboardAvoidingView>
     );
@@ -60,7 +65,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     backgroundColor: '#2980b9',
-    paddingVertical: 15
+    paddingVertical: 15,
+    marginBottom: 10
   },
   formContainer: {
     padding: 20
@@ -76,5 +82,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#fff',
     paddingHorizontal: 10
+  },
+  registerBtnContainer: {
+      marginTop: 50,
+      marginBottom: 50
+  },
+  registerButtonText:{
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 20
   }
 })

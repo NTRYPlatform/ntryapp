@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert  } from 'react-native';
-import Login from './src/components/Login/Login';
+import Login from './src/components/Login';
 
 import * as openpgp from 'react-native-openpgp';
 
