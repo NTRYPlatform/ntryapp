@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput,TouchableOpacity, KeyboardAvoidingView, StatusBar  } from 'react-native';
+import { StyleSheet, View, Text, TextInput,TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
 
 
 export default class Login extends Component {
-
+  static navigationOptions = {
+    header: null,
+    title : 'Login'
+  }
   render() {
+    const { navigate } = this.props.navigation;
     return (
 
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <StatusBar
-          barStyle="light-content"
-         />
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>       
         <View style={styles.logoContainer}>
           <Text style={styles.titleText}>NTRY</Text>
         </View>
@@ -37,7 +38,7 @@ export default class Login extends Component {
                 <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.registerBtnContainer}>
+              <TouchableOpacity style={styles.registerBtnContainer} onPress={()=> navigate('Register')}>
                 <Text style={styles.registerButtonText}>Register</Text>
               </TouchableOpacity>
 

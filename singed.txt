@@ -1,0 +1,13 @@
+-----BEGIN PGP SIGNED MESSAGE----- 
+Hash: SHA256 
+
+this is test 
+-----BEGIN PGP SIGNATURE----- 
+Version: React-Native-OpenPGP.js 0.1 
+Comment: http://openpgpjs.org 
+
+wlwEAQEIABAFAlmoVMAJEPKHK1WkRzIxAAACqgH8D/DBZoMfSpxaXWeP5j4/
+YWM7wqXC1hZT96sTXL+zbtJIYbnnTG+KZKcWkZAUi8hDmxAclhGBHbbdfTws
+ivhNEg== 
+=t7ig 
+-----END PGP SIGNATURE----- 

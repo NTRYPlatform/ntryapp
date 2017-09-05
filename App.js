@@ -1,18 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert  } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+
 import Login from './src/components/Login';
+import Register from './src/components/Register';
 
 import * as openpgp from 'react-native-openpgp';
 
 
+const AppNavigation = StackNavigator({
+  
+  Login: { screen: Login },
+  Register: { screen: Register }
+}, {
+  initialRouteName: 'Register'
+});
+
+
 export default class App extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-        'public': '',
-        'private': ''
+      'public': '',
+      'private': ''
     };
 
     this.onPressGenKeyPair = this.onPressGenKeyPair.bind(this);
@@ -20,17 +32,17 @@ export default class App extends React.Component {
   }
 
 
-  onPressGenKeyPair(){
+  onPressGenKeyPair() {
 
     const options = {
-      userIds: [{name: 'Basit Raza', email:'basit.raza11@gmail.com'}],
+      userIds: [{ name: 'Basit Raza', email: 'basit.raza11@gmail.com' }],
       numBits: 2048,
       passphrase: 'testnet'
     };
 
     openpgp.generateKey(options)
       .then((key) => {
-          this.setState({'public':key.publicKeyArmored});
+        this.setState({ 'public': key.publicKeyArmored });
       })
       .catch((err) => {
         Alert.alert('Something went wrong');
@@ -43,7 +55,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Login />
+      <AppNavigation />
     );
   }
 }
