@@ -10,12 +10,19 @@ const common = StyleSheet.create({
         flexGrow: 1,
         justifyContent: 'center'
     },
+    logoText:{
+        fontSize: 60,
+        fontWeight: 'bold',
+        color: '#fff',
+        textAlign: 'center',
+        marginBottom: 30
+    },
     titleText: {
         fontSize: 60,
         fontWeight: 'bold',
         color: '#fff'
     },
-    registerTitleText: {        
+    registerTitleText: {
         fontSize: 25,
         fontWeight: 'bold',
         color: '#fff',
@@ -39,12 +46,16 @@ const common = StyleSheet.create({
         paddingVertical: 15,
         marginTop: 10,
         marginBottom: 10
-      },
-    buttonText:{
+    },
+    linkContainer: {
+        marginTop: 10,
+        marginBottom: 10
+    },
+    buttonText: {
         textAlign: 'center',
         color: '#FFF',
         fontWeight: '700'
-      }
+    }
 })
 
 
