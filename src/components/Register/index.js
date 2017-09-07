@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 import Common from '../../styles/Common';
 import { GenerateKeyPair, SaveVal, Sign, Verify } from '../../utils/helpers';
+import conf from '../../conf/conf';
 
 export default class Register extends Component {
 
@@ -13,6 +14,7 @@ export default class Register extends Component {
             password: '',
             private: '',
             public: '',
+            eth_address: '',
             singed: ''
         };
 
@@ -68,19 +70,16 @@ export default class Register extends Component {
             passphrase: this.state.password
         }
         GenerateKeyPair(options, (key) => {
-            console.log(key.publicKeyArmored);
-            console.log(key.privateKeyArmored);
             this.setState({ public: key.publicKeyArmored, private: key.privateKeyArmored })
-            //sign("this is test",  key.privateKeyArmored, key.publicKeyArmored)
-
-            /*SaveVal('public', key.publicKeyArmored, (err)=> {
-                console.log(err)
-            });*/
-            //SaveVal('private', key.privateKeyArmored);
-
-            fetch("http://192.168.10.21:9000/ntry/pk", {
+            
+            fetch("/ntry/pk", {
                 method: 'POST',
-                body: this.state.public
+                body:JSON.stringify({
+                    publickey :this.state.public,
+                    email: this.state.email,
+                    password: this.state.password,
+                    eth_address: this.state.eth_address
+                })
             }).then((r) => {
                 Alert.alert("PK",r.statusText)
               })
@@ -127,27 +126,22 @@ export default class Register extends Component {
 
                     />
 
+                    <TextInput
+                        placeholder="Eth Address"
+                        placeholderTextColor="rgba(255,255,255,0.7)"
+                        returnKeyType="next"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        ref={(input) => this.eth_address = input}
+                        style={Common.input}
+                        onChangeText={(text) => this.setState({ eth_address: text })}
+
+                    />
+
                     <TouchableOpacity onPress={this._register} style={Common.buttonContainer}>
                         <Text style={Common.buttonText}>Register</Text>
                     </TouchableOpacity>
-                    <TextInput style={Common.input}
-                        multiline={true}
-                        value={this.state.public}
-                    />
-                    <TextInput style={Common.input}
-                        multiline={true}
-                        value={this.state.private}
-                    />
-                    <TextInput style={Common.input}
-                        multiline={true}
-                        value={this.state.singed}
-                    />
-                    <TouchableOpacity onPress={this._sign} style={Common.buttonContainer}>
-                        <Text style={Common.buttonText}>Sign</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={this._verify} style={Common.buttonContainer}>
-                        <Text style={Common.buttonText}>Verify</Text>
-                    </TouchableOpacity>
+                    
                 </View>
             </KeyboardAvoidingView>
         );
